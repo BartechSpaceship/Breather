@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.Home">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/top_buttons"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:textAllCaps="false"
+                android:background="@null"
+                android:text="Select a Session"
+                android:layout_marginStart="10dp"
+                android:layout_alignParentStart="true"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:text="Custom Session"
+                android:textAllCaps="false"
+                android:layout_marginEnd="10dp"
+                android:background="@null"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/top_buttons"
+            >
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_sound"
+                android:layout_toLeftOf="@+id/quote_of_the_day"
+                android:layout_marginTop="40dp"
+                android:id="@+id/volumeOptions"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/quote_of_the_day"
+                android:text="Quote of the day"
+                android:layout_centerHorizontal="true"
+                android:textSize="22sp"
+                android:layout_marginTop="10dp"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_favorite"
+                android:layout_toRightOf="@+id/quote_of_the_day"
+                android:layout_marginTop="40dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/like_this_session"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Image In the background and total time tbd in the center "
+                android:layout_centerInParent="true"/>
+
+
+
+        </RelativeLayout>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/main_bottomsheet"/>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>
