@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.breathforme.Fragments.Home;
@@ -17,32 +19,28 @@ import com.example.breathforme.Fragments.Liked;
 import com.example.breathforme.Fragments.Membership;
 import com.example.breathforme.Fragments.Records;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 public class MainActivity extends AppCompatActivity {
 
     private long backPressedTime;
     private Toast backToast;
     private SharedPreferences sharedPreferences;
+    private BottomSheetBehavior mainFragmentBottomSheetBehavior;
+    private RelativeLayout mainFragmentBottomSheet;
     private int setInitialBreathCount, setInitialSetCount;
+    public BottomNavigationView bottomNavigationView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        registerBottomNavigation();
         openFragment();
 
     }
-    private void registerBottomNavigation(){
 
 
-
-    }
-    private void showMainBottomSheet(){
-
-
-    }
     private void openFragment(){
         //Sets up bottom Nav + Fragments
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -55,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
-            BottomNavigationView bottomView = findViewById(R.id.bottom_navigation);
-            Menu menu = bottomView.getMenu();
+            bottomNavigationView = findViewById(R.id.bottom_navigation);
+            Menu menu = bottomNavigationView.getMenu();
 
             //    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

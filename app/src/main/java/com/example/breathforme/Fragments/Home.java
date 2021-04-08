@@ -1,66 +1,112 @@
 package com.example.breathforme.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
+import com.example.breathforme.PickerActivity;
 import com.example.breathforme.R;
+import com.example.breathforme.cardFragments.Types;
+import com.google.android.material.bottomnavigation.BottomNavigationMenu;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Home#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.lang.reflect.Type;
+
 public class Home extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private View view;
+    private BottomSheetBehavior mainFragmentBottomSheetBehavior;
+    private RelativeLayout mainFragmentBottomSheet;
+    private ImageView firstSeparator;
+    private LinearLayout setUpFirstItemsLL;
+    private Button selectButton;
+    private CardView selectTypeCard, totalBreathsCard, totalSetsCard, startBellCard, endBellCard,
+            meditationCard, binauralBeatsCard, soundscapeCard, instructionCard, delaySetCard;
+    BottomNavigationView navBar;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public Home() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Home.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Home newInstance(String param1, String param2) {
-        Home fragment = new Home();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        view = inflater.inflate(R.layout.fragment_home, container, false);
+        setUpMainBottomSheet();
+
+
+        return view;
     }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        onClickCardListeners();
+        getActivity().findViewById(R.id.bottom_navigation);
+    }
+
+    private void setUpMainBottomSheet(){
+        selectTypeCard = view.findViewById(R.id.type);
+        mainFragmentBottomSheet = view.findViewById(R.id.main_bottomsheet);
+        mainFragmentBottomSheetBehavior = BottomSheetBehavior.from(mainFragmentBottomSheet);
+        mainFragmentBottomSheetBehavior.setBottomSheetCallback(getBottomSheetCallback());
+        mainFragmentBottomSheet.setVisibility(View.VISIBLE);
+        mainFragmentBottomSheetBehavior.setPeekHeight(800);
+
+    }
+
+    private void onClickCardListeners(){
+        Types typesFragment = new Types();
+        FragmentManager fragmentmanager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction= fragmentmanager.beginTransaction();
+        selectTypeCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent typesIntent = new Intent(getActivity(), PickerActivity.class);
+                getActivity().startActivity(typesIntent);
+            }
+        });
+    }
+
+    private BottomSheetBehavior.BottomSheetCallback getBottomSheetCallback() {
+        return new BottomSheetBehavior.BottomSheetCallback() {
+            @Override//ToDo when the bottom sheet is expanded hide all of the bottom layouts
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_EXPANDED:
+
+                        break;
+
+                    case BottomSheetBehavior.STATE_COLLAPSED:
+
+                        break;
+
+                    case BottomSheetBehavior.STATE_HIDDEN:
+
+                        break;
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        };
+    }
+
 }
