@@ -29,6 +29,8 @@ import java.lang.reflect.Type;
 
 public class Home extends Fragment {
 
+    private final String TYPES = "TYPES";
+    private final String BREATHS = "BREATHS";
     private View view;
     private BottomSheetBehavior mainFragmentBottomSheetBehavior;
     private RelativeLayout mainFragmentBottomSheet;
@@ -38,6 +40,7 @@ public class Home extends Fragment {
     private CardView selectTypeCard, totalBreathsCard, totalSetsCard, startBellCard, endBellCard,
             meditationCard, binauralBeatsCard, soundscapeCard, instructionCard, delaySetCard;
     BottomNavigationView navBar;
+
 
 
     public Home() {
@@ -62,6 +65,7 @@ public class Home extends Fragment {
 
     private void setUpMainBottomSheet(){
         selectTypeCard = view.findViewById(R.id.type);
+        totalSetsCard = view.findViewById(R.id.sets);
         mainFragmentBottomSheet = view.findViewById(R.id.main_bottomsheet);
         mainFragmentBottomSheetBehavior = BottomSheetBehavior.from(mainFragmentBottomSheet);
         mainFragmentBottomSheetBehavior.setBottomSheetCallback(getBottomSheetCallback());
@@ -71,14 +75,19 @@ public class Home extends Fragment {
     }
 
     private void onClickCardListeners(){
-        Types typesFragment = new Types();
-        FragmentManager fragmentmanager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction= fragmentmanager.beginTransaction();
+        Intent intent = new Intent(getActivity(), PickerActivity.class);
         selectTypeCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent typesIntent = new Intent(getActivity(), PickerActivity.class);
-                getActivity().startActivity(typesIntent);
+                intent.putExtra("key", TYPES);
+                getActivity().startActivity(intent);
+            }
+        });
+        totalSetsCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("key", BREATHS);
+                getActivity().startActivity(intent);
             }
         });
     }
