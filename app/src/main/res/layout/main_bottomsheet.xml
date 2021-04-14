@@ -7,12 +7,9 @@
     android:background="@drawable/bottomsheet_background"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select"
-        android:id="@+id/selectButton"/>
-
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,20 +21,13 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="Type"
-            android:layout_margin="10dp"
             android:layout_gravity="center"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/set_up_items"
-            android:weightSum="2">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/type"
                 app:cardCornerRadius="8dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -55,7 +45,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/sets"
                 app:cardCornerRadius="8dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -71,33 +61,10 @@
 
             </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:id="@+id/first_separator"
-            android:background="@color/black"
-            android:alpha="0.5"
-            />
-        <TextView
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Bells"
-            android:layout_margin="10dp"
-            android:layout_gravity="center"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/bells"
-            android:weightSum="3"
-            >
             <androidx.cardview.widget.CardView
                 android:id="@+id/starting_bell"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="8dp"
@@ -115,7 +82,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/breath_hold_bell"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -132,7 +99,7 @@
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:id="@+id/last_bell"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="8dp"
@@ -149,34 +116,10 @@
             </androidx.cardview.widget.CardView>
 
 
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:id="@+id/separator_bells"
-            android:background="@color/black"
-            android:alpha="0.5"
-            />
-
-        <TextView
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Timers"
-            android:layout_margin="10dp"
-            android:layout_gravity="center"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/timers"
-            android:weightSum="2">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/meditation"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="8dp"
@@ -194,7 +137,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/delay_timer"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -211,35 +154,13 @@
 
             </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:id="@+id/separator_timers"
-            android:background="@color/black"
-            android:alpha="0.5"
-            />
 
-        <TextView
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Sounds"
-            android:layout_margin="10dp"
-            android:layout_gravity="center"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/sounds_layout"
-            android:weightSum="2">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/binaural_beats_card"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -257,7 +178,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/ambient_sounds_card"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -274,10 +195,9 @@
 
             </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
-
-
-
     </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 
 </RelativeLayout>

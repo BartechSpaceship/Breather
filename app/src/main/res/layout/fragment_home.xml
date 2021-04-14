@@ -33,51 +33,52 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/volumeOptions"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="40dp"
+                android:layout_toLeftOf="@+id/quote_of_the_day"
+                android:src="@drawable/ic_sound" />
+
+            <TextView
+                android:id="@+id/quote_of_the_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Quote of the day"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:id="@+id/like_this_session"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="40dp"
+                android:layout_toRightOf="@+id/quote_of_the_day"
+                android:src="@drawable/ic_favorite" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Image In the background and total time tbd in the center " />
+
+
+        </RelativeLayout>
+
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
             <include layout="@layout/main_bottomsheet"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/volumeOptions"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="40dp"
-                    android:layout_toLeftOf="@+id/quote_of_the_day"
-                    android:src="@drawable/ic_sound" />
-
-                <TextView
-                    android:id="@+id/quote_of_the_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:text="Quote of the day"
-                    android:textSize="22sp" />
-
-                <ImageView
-                    android:id="@+id/like_this_session"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="40dp"
-                    android:layout_toRightOf="@+id/quote_of_the_day"
-                    android:src="@drawable/ic_favorite" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="Image In the background and total time tbd in the center " />
-
-
-            </RelativeLayout>
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
