@@ -1,5 +1,6 @@
 package com.example.breathforme.adapters;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,22 +14,26 @@ import com.example.breathforme.R;
 
 import java.util.ArrayList;
 
+//TODO need to remake adapter to add onClick Listener to ReDo the views when the user clicks on a different one.
+
 public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.ViewHolder> {
 
     private ArrayList<TypesItem> typesItems;
-    private ItemClickListener mClickListener;
+    private ItemClickListener itemClickListener;
     private int rowPosition;
+    private Context context;
 
-    public TypesAdapter(ArrayList<TypesItem> typesItems){
+    public TypesAdapter(ArrayList<TypesItem> typesItems, ItemClickListener itemClickListener, Context context){
       this.typesItems = typesItems;
+      this.itemClickListener = itemClickListener;
+      this.context = context;
     }
 
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.types_recycler_items, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view, itemClickListener);
     }
 
     // binds the data to the TextView in each row
@@ -37,18 +42,19 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.ViewHolder> 
         TypesItem currentItem = typesItems.get(position);
         holder.title.setText(currentItem.getTitle());
         holder.description.setText(currentItem.getDescription());
-        holder.typesCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rowPosition = position;
-                notifyDataSetChanged();
-            }
-        });
-        if (rowPosition == position){
-            holder.typesCardView.setBackgroundColor(Color.RED);
-        } else {
-            holder.typesCardView.setBackgroundColor(Color.TRANSPARENT);
-        }
+        //ToDo need to add styling later on
+//        holder.typesCardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                rowPosition = position;
+//              //  notifyDataSetChanged();
+//            }
+//        });
+//        if (rowPosition == position){
+//            holder.typesCardView.setBackgroundColor(Color.RED);
+//        } else {
+//            holder.typesCardView.setBackgroundColor(Color.TRANSPARENT);
+//        }
     }
 
     // total number of rows
@@ -63,18 +69,20 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.ViewHolder> 
         public TextView title;
         public TextView description;
         public CardView typesCardView;
+        public ItemClickListener itemClickListener;
 
-        ViewHolder(View itemView) {
+        public ViewHolder(View itemView, ItemClickListener itemClickListener) {
             super(itemView);
             title = itemView.findViewById(R.id.types_title);
             description = itemView.findViewById(R.id.types_description);
             typesCardView = itemView.findViewById(R.id.types_card);
             itemView.setOnClickListener(this);
+            this.itemClickListener = itemClickListener;
         }
 
         @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+        public void onClick(View v) {
+            itemClickListener.onItemClick(getAdapterPosition());
         }
     }
 
@@ -84,13 +92,8 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.ViewHolder> 
 
     }
 
-    // allows clicks events to be caught
-    public void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(int position);
     }
 }

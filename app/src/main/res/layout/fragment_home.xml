@@ -76,10 +76,8 @@
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <include layout="@layout/main_bottomsheet"/>
-
-
-
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     </RelativeLayout>
