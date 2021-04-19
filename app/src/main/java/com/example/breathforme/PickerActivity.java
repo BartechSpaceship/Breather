@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.breathforme.Fragments.Home;
 import com.example.breathforme.cardFragments.Sets;
+import com.example.breathforme.cardFragments.TotalBreaths;
 import com.example.breathforme.cardFragments.Types;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -16,6 +17,7 @@ public class PickerActivity extends AppCompatActivity {
 
     private final String TYPES = "TYPES";
     private final String BREATHS = "BREATHS";
+    private final String SETS = "SETS";
 
 
     @Override
@@ -31,8 +33,10 @@ public class PickerActivity extends AppCompatActivity {
 
         if (getFragmentIntent.equals(TYPES)) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_picker, new Types()).commit();
-        } else if (getFragmentIntent.equals(BREATHS)) {
+        } else if (getFragmentIntent.equals(SETS)) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_picker, new Sets()).commit();
+        } else if (getFragmentIntent.equals(BREATHS)){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_picker, new TotalBreaths()).commit();
         }
 
 

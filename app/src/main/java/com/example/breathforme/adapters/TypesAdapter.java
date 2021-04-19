@@ -3,6 +3,7 @@ package com.example.breathforme.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -20,7 +21,7 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.ViewHolder> 
 
     private ArrayList<TypesItem> typesItems;
     private ItemClickListener itemClickListener;
-    private int rowPosition;
+    public int rowPosition;
     private Context context;
 
     public TypesAdapter(ArrayList<TypesItem> typesItems, ItemClickListener itemClickListener, Context context){
@@ -42,19 +43,12 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.ViewHolder> 
         TypesItem currentItem = typesItems.get(position);
         holder.title.setText(currentItem.getTitle());
         holder.description.setText(currentItem.getDescription());
-        //ToDo need to add styling later on
-//        holder.typesCardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                rowPosition = position;
-//              //  notifyDataSetChanged();
-//            }
-//        });
-//        if (rowPosition == position){
-//            holder.typesCardView.setBackgroundColor(Color.RED);
-//        } else {
-//            holder.typesCardView.setBackgroundColor(Color.TRANSPARENT);
-//        }
+
+        if (rowPosition == position){
+            holder.typesCardView.setBackgroundColor(Color.RED);
+        } else {
+            holder.typesCardView.setBackgroundColor(Color.TRANSPARENT);
+        }
     }
 
     // total number of rows
@@ -83,6 +77,7 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.ViewHolder> 
         @Override
         public void onClick(View v) {
             itemClickListener.onItemClick(getAdapterPosition());
+            notifyDataSetChanged();
         }
     }
 

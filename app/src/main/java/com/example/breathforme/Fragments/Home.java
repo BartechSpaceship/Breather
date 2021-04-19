@@ -8,41 +8,38 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.breathforme.PickerActivity;
 import com.example.breathforme.R;
-import com.example.breathforme.cardFragments.Sets;
-import com.example.breathforme.cardFragments.Types;
-import com.google.android.material.bottomnavigation.BottomNavigationMenu;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-
-import java.lang.reflect.Type;
 
 public class Home extends Fragment {
 
+    private static final String TAG = "NU";
     private final String TYPES = "TYPES";
+    private final String SETS = "SETS";
     private final String BREATHS = "BREATHS";
     private final int LAUNCH_SECOND_ACTIVITY = 1;
+    private final int LAUNCH_SETS = 2;
+    private final int LAUNCH_BREATH = 3;
+
 
     private View view;
     private BottomSheetBehavior mainFragmentBottomSheetBehavior;
     private RelativeLayout mainFragmentBottomSheet;
-    private CardView selectTypeCard, totalBreathsCard, totalSetsCard, startBellCard, endBellCard,
-            meditationCard, binauralBeatsCard, soundscapeCard, instructionCard, delaySetCard;
-    private boolean isWimHof, isShamanicBreathing, isCarbonDioxideTraining, isConsciousBreathingAnchor, is478;
-    String result;
+    private CardView selectTypeCard, totalBreathsCard, totalSetsCard, startBellCard, endBellCard, totalBreathingMinutesCard,
+            meditationCard, binauralBeatsCard, soundscapeCard, instructionCard, delaySetCard, holdBellCard;
+    private boolean isSets, isShamanicBreathing, isCarbonDioxideTraining, isConsciousBreathingAnchor, is478;
+    private TextView typesTV, setsTV;
+    String resultType;
+    String resultSets;
 
 
     public Home() {
@@ -64,26 +61,56 @@ public class Home extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         onClickCardListeners();
         getActivity().findViewById(R.id.bottom_navigation);
-        setUpBottomSheetLayouts();
+
 
 
     }
 
-    private void setUpBottomSheetLayouts() {
-        if (result != null) {
+    private void setUpBottomsheetLayouts() {
 
+        if (resultType.equals("WIM")) {
+            typesTV.setText("Wim Hof");
+            totalBreathsCard.setVisibility(View.VISIBLE);
+            totalSetsCard.setVisibility(View.VISIBLE);
+            delaySetCard.setVisibility(View.VISIBLE);
+            meditationCard.setVisibility(View.VISIBLE);
+            binauralBeatsCard.setVisibility(View.VISIBLE);
+            instructionCard.setVisibility(View.VISIBLE);
+          //  totalBreathingMinutesCard.setVisibility(View.GONE);
+
+//            startBellCard.setVisibility(View.VISIBLE);
+//            endBellCard.setVisibility(View.VISIBLE);
+//            holdBellCard.setVisibility(View.VISIBLE);
+
+        } else {
+            if (resultType.equals("SHAMANIC")) {
+                typesTV.setText("Shamanic");
+            } else if (resultType.equals("CONSCIOUSANCHOR")){
+                typesTV.setText("Conscious Breathing Anchor");
+            } else if (resultType.equals("FOURSEVENEIGHT")){
+                typesTV.setText("Four seven eight");
+            } else if (resultType.equals("FOURBOX")){
+                typesTV.setText("Box Breathing ");
+            }
+        //    totalBreathingMinutesCard.setVisibility(View.VISIBLE);
+            totalSetsCard.setVisibility(View.GONE);
+            holdBellCard.setVisibility(View.GONE);
+            delaySetCard.setVisibility(View.GONE);
+            totalBreathsCard.setVisibility(View.VISIBLE);
+            meditationCard.setVisibility(View.VISIBLE);
+            binauralBeatsCard.setVisibility(View.VISIBLE);
+            instructionCard.setVisibility(View.VISIBLE);
+
+          //  startBellCard.setVisibility(View.VISIBLE);
+//            endBellCard.setVisibility(View.VISIBLE);
+//            holdBellCard.setVisibility(View.VISIBLE);
+            //ToDo, get rid of total breaths. Instead count it in minutes. Howmany mintues do you want to do box breathing for ?
         }
 
-//        Intent getIntent = getActivity().getIntent();
-//        String getTypesIntent = getIntent.getStringExtra("types");
-//
-//
-//        }
 
     }
 
     private void setUpMainBottomSheet() {
-
         selectTypeCard = view.findViewById(R.id.type);
         totalSetsCard = view.findViewById(R.id.sets);
         totalBreathsCard = view.findViewById(R.id.totalBreathsCard);
@@ -94,6 +121,10 @@ public class Home extends Fragment {
         soundscapeCard = view.findViewById(R.id.ambient_sounds_card);
         instructionCard = view.findViewById(R.id.instruction_card);
         delaySetCard = view.findViewById(R.id.delay_timer);
+        setsTV = view.findViewById(R.id.sets_TV);
+        typesTV = view.findViewById(R.id.types_TV);
+        holdBellCard = view.findViewById(R.id.breath_hold_bell);
+       // totalBreathingMinutesCard = view.findViewById(R.id.totalBreathingMinutesCard);
 
         mainFragmentBottomSheet = view.findViewById(R.id.main_bottomsheet);
         mainFragmentBottomSheetBehavior = BottomSheetBehavior.from(mainFragmentBottomSheet);
@@ -115,8 +146,15 @@ public class Home extends Fragment {
         totalSetsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra("key", SETS);
+                startActivityForResult(intent, LAUNCH_SETS);
+            }
+        });
+        totalBreathsCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 intent.putExtra("key", BREATHS);
-                getActivity().startActivity(intent);
+                startActivityForResult(intent, LAUNCH_SETS);
             }
         });
     }
@@ -150,21 +188,23 @@ public class Home extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-
+        //ToDo Will have to save the data offline so that the views do not disappear after switching fragments
         if (requestCode == LAUNCH_SECOND_ACTIVITY) {
-
             if (resultCode == Activity.RESULT_OK) {
-                result = data.getStringExtra("types");
-                if (result.equals("WIM")){
-                    totalSetsCard.setVisibility(View.GONE);
-                } else if (result.equals("SHAMANIC")){
-                    totalBreathsCard.setVisibility(View.GONE);
-                }
+                resultType = data.getStringExtra("types");
+                setUpBottomsheetLayouts();
 
             }
-            //Change layout based on activity
         }
+        if (requestCode == LAUNCH_SETS){
+            if (resultCode == Activity.RESULT_OK) {
+
+                resultSets = data.getStringExtra("sets");
+                setsTV.setText(resultSets);
+            }
+        }
+
+
         if (resultCode == Activity.RESULT_CANCELED) {
             Toast.makeText(getContext(), "Cancelled Activity ", Toast.LENGTH_SHORT).show();
         }

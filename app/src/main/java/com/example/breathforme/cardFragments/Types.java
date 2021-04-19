@@ -2,6 +2,7 @@ package com.example.breathforme.cardFragments;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,22 +11,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.breathforme.Fragments.Home;
 import com.example.breathforme.R;
 import com.example.breathforme.adapters.TypesAdapter;
 import com.example.breathforme.adapters.TypesItem;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 
 public class Types extends Fragment implements TypesAdapter.ItemClickListener {
@@ -37,6 +32,10 @@ public class Types extends Fragment implements TypesAdapter.ItemClickListener {
 
     private final String WIM = "WIM";
     private final String SHAMANIC = "SHAMANIC";
+    private final String CO2 = "CO2";
+    private final String CONSCIOUSANCHOR = "CONSCIOUSANCHOR";
+    private final String FOURSEVENEIGHT = "FOURSEVENEIGHT";
+    private final String FOURBOX = "FOURBOX";
 
 
     private Button saveButton;
@@ -45,7 +44,7 @@ public class Types extends Fragment implements TypesAdapter.ItemClickListener {
     private TypesAdapter typesAdapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private int cardPosition;
+    private int rowPosition;
     ArrayList<TypesItem> typesItems;
     String result;
 
@@ -103,16 +102,24 @@ public class Types extends Fragment implements TypesAdapter.ItemClickListener {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cardPosition == 0) {
+                if (rowPosition == 0) {
                     intent.putExtra("types", WIM);
                     getActivity().setResult(Activity.RESULT_OK, intent);
-
-                    //    Toast.makeText(getContext(), "Clicked WIM", Toast.LENGTH_SHORT).show();
-
-                } else if (cardPosition == 1) {
+                } else if (rowPosition == 1) {
                     intent.putExtra("types", SHAMANIC);
                     getActivity().setResult(Activity.RESULT_OK, intent);
-
+                } else if (rowPosition == 2){
+                    intent.putExtra("types", CO2);
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                } else if (rowPosition == 3){
+                    intent.putExtra("types", CONSCIOUSANCHOR);
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                } else if (rowPosition == 4){
+                    intent.putExtra("types", FOURSEVENEIGHT);
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                } else if (rowPosition == 5) {
+                    intent.putExtra("types", FOURBOX);
+                    getActivity().setResult(Activity.RESULT_OK, intent);
                 }
                 getActivity().finish();
             }
@@ -123,7 +130,8 @@ public class Types extends Fragment implements TypesAdapter.ItemClickListener {
 
     @Override
     public void onItemClick(int position) {
-        cardPosition = position;
+        rowPosition = position;
+        typesAdapter.rowPosition = position;
 
         //        holder.typesCardView.setOnClickListener(new View.OnClickListener() {
 //            @Override

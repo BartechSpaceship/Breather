@@ -6,6 +6,7 @@ public class TypesItem {
     private String title;
     private String description;
 
+
     public TypesItem(String title, String description){
         this.title = title;
         this.description = description;
