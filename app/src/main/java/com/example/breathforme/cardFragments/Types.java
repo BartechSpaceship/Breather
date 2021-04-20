@@ -130,20 +130,8 @@ public class Types extends Fragment implements TypesAdapter.ItemClickListener {
 
     @Override
     public void onItemClick(int position) {
-        rowPosition = position;
+
         typesAdapter.rowPosition = position;
 
-        //        holder.typesCardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                rowPosition = position;
-//              //  notifyDataSetChanged();
-//            }
-//        });
-//        if (rowPosition == position){
-//            holder.typesCardView.setBackgroundColor(Color.RED);
-//        } else {
-//            holder.typesCardView.setBackgroundColor(Color.TRANSPARENT);
-//        }
     }
 }

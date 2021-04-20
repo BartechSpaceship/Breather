@@ -13,22 +13,22 @@
             android:id="@+id/top_buttons"
             android:layout_height="wrap_content">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:textAllCaps="false"
-                android:background="@null"
-                android:text="Select a Session"
-                android:layout_marginStart="10dp"
-                android:layout_alignParentStart="true"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:text="Custom Session"
-                android:textAllCaps="false"
-                android:layout_marginEnd="10dp"
-                android:background="@null"
-                android:layout_alignParentEnd="true"
-                android:layout_height="wrap_content"/>
+<!--            <Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:background="@null"-->
+<!--                android:text="Select a Session"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:layout_height="wrap_content"/>-->
+<!--            <Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:text="Custom Session"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:background="@null"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_height="wrap_content"/>-->
 
 
         </RelativeLayout>
@@ -43,6 +43,7 @@
                 android:layout_height="30dp"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="40dp"
+                android:layout_marginRight="60dp"
                 android:layout_toLeftOf="@+id/quote_of_the_day"
                 android:src="@drawable/ic_sound" />
 
@@ -53,7 +54,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:text="Quote of the day"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/like_this_session"
@@ -61,14 +62,30 @@
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="40dp"
+                android:layout_marginLeft="60dp"
                 android:layout_toRightOf="@+id/quote_of_the_day"
                 android:src="@drawable/ic_favorite" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_meditate"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Image In the background and total time tbd in the center " />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="120dp"
+                android:id="@+id/image"
+                android:text="Breathwork time total is lime disease" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="start"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="550dp"
+                android:id="@+id/start_button"/>
 
 
         </RelativeLayout>

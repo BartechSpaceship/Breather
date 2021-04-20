@@ -15,7 +15,6 @@ import com.example.breathforme.R;
 
 import java.util.ArrayList;
 
-//TODO need to remake adapter to add onClick Listener to ReDo the views when the user clicks on a different one.
 
 public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.ViewHolder> {
 

@@ -1,5 +1,6 @@
 package com.example.breathforme.Fragments;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,11 +8,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,9 +30,11 @@ public class Home extends Fragment {
     private final String TYPES = "TYPES";
     private final String SETS = "SETS";
     private final String BREATHS = "BREATHS";
+    private final String BINAURAL = "BINAURAL";
     private final int LAUNCH_SECOND_ACTIVITY = 1;
     private final int LAUNCH_SETS = 2;
     private final int LAUNCH_BREATH = 3;
+    private final int LAUNCH_BINAURAL = 4;
 
 
     private View view;
@@ -36,8 +42,9 @@ public class Home extends Fragment {
     private RelativeLayout mainFragmentBottomSheet;
     private CardView selectTypeCard, totalBreathsCard, totalSetsCard, startBellCard, endBellCard, totalBreathingMinutesCard,
             meditationCard, binauralBeatsCard, soundscapeCard, instructionCard, delaySetCard, holdBellCard;
-    private boolean isSets, isShamanicBreathing, isCarbonDioxideTraining, isConsciousBreathingAnchor, is478;
     private TextView typesTV, setsTV;
+    private Button startButton;
+    int CHeight;
     String resultType;
     String resultSets;
 
@@ -85,8 +92,10 @@ public class Home extends Fragment {
         } else {
             if (resultType.equals("SHAMANIC")) {
                 typesTV.setText("Shamanic");
-            } else if (resultType.equals("CONSCIOUSANCHOR")){
+            } else if (resultType.equals("CONSCIOUSANCHOR")) {
                 typesTV.setText("Conscious Breathing Anchor");
+            } else if (resultType.equals("CO2")){
+                typesTV.setText("Carbon Dioxide Training");
             } else if (resultType.equals("FOURSEVENEIGHT")){
                 typesTV.setText("Four seven eight");
             } else if (resultType.equals("FOURBOX")){
@@ -124,13 +133,13 @@ public class Home extends Fragment {
         setsTV = view.findViewById(R.id.sets_TV);
         typesTV = view.findViewById(R.id.types_TV);
         holdBellCard = view.findViewById(R.id.breath_hold_bell);
-       // totalBreathingMinutesCard = view.findViewById(R.id.totalBreathingMinutesCard);
+        startButton = view.findViewById(R.id.start_button);
 
         mainFragmentBottomSheet = view.findViewById(R.id.main_bottomsheet);
         mainFragmentBottomSheetBehavior = BottomSheetBehavior.from(mainFragmentBottomSheet);
         mainFragmentBottomSheetBehavior.setBottomSheetCallback(getBottomSheetCallback());
+        mainFragmentBottomSheetBehavior.setPeekHeight(250);
         mainFragmentBottomSheet.setVisibility(View.VISIBLE);
-        mainFragmentBottomSheetBehavior.setPeekHeight(800);
 
     }
 
@@ -155,6 +164,13 @@ public class Home extends Fragment {
             public void onClick(View v) {
                 intent.putExtra("key", BREATHS);
                 startActivityForResult(intent, LAUNCH_SETS);
+            }
+        });
+        binauralBeatsCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("key", BINAURAL);
+                startActivityForResult(intent, LAUNCH_BINAURAL);
             }
         });
     }
