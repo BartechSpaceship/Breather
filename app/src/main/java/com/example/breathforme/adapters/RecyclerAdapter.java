@@ -3,7 +3,6 @@ package com.example.breathforme.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -16,15 +15,15 @@ import com.example.breathforme.R;
 import java.util.ArrayList;
 
 
-public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.ViewHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private ArrayList<TypesItem> typesItems;
+    private ArrayList<RecyclerItem> recyclerItems;
     private ItemClickListener itemClickListener;
     public int rowPosition;
     private Context context;
 
-    public TypesAdapter(ArrayList<TypesItem> typesItems, ItemClickListener itemClickListener, Context context){
-      this.typesItems = typesItems;
+    public RecyclerAdapter(ArrayList<RecyclerItem> recyclerItems, ItemClickListener itemClickListener, Context context){
+      this.recyclerItems = recyclerItems;
       this.itemClickListener = itemClickListener;
       this.context = context;
     }
@@ -39,7 +38,7 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.ViewHolder> 
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        TypesItem currentItem = typesItems.get(position);
+        RecyclerItem currentItem = recyclerItems.get(position);
         holder.title.setText(currentItem.getTitle());
         holder.description.setText(currentItem.getDescription());
 
@@ -53,7 +52,7 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.ViewHolder> 
     // total number of rows
     @Override
     public int getItemCount() {
-        return typesItems.size();
+        return recyclerItems.size();
     }
 
 
@@ -81,8 +80,8 @@ public class TypesAdapter extends RecyclerView.Adapter<TypesAdapter.ViewHolder> 
     }
 
 //   // convenience method for getting data at click position
-    public TypesItem getItem(int position) {
-        return typesItems.get(position);
+    public RecyclerItem getItem(int position) {
+        return recyclerItems.get(position);
 
     }
 

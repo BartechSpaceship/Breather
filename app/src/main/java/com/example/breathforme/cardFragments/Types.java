@@ -2,7 +2,6 @@ package com.example.breathforme.cardFragments;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,13 +16,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.breathforme.R;
-import com.example.breathforme.adapters.TypesAdapter;
-import com.example.breathforme.adapters.TypesItem;
+import com.example.breathforme.adapters.RecyclerAdapter;
+import com.example.breathforme.adapters.RecyclerItem;
 
 import java.util.ArrayList;
 
 
-public class Types extends Fragment implements TypesAdapter.ItemClickListener {
+public class Types extends Fragment implements RecyclerAdapter.ItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,11 +40,11 @@ public class Types extends Fragment implements TypesAdapter.ItemClickListener {
     private Button saveButton;
     private View view;
     private boolean isWimHof, isShamanicBreathing, isConsciousBreathingAnchor, isCO2, is478, isBoxBreathing;
-    private TypesAdapter typesAdapter;
+    private RecyclerAdapter recyclerAdapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private int rowPosition;
-    ArrayList<TypesItem> typesItems;
+    ArrayList<RecyclerItem> recyclerItems;
     String result;
 
     public Types() {
@@ -79,18 +78,18 @@ public class Types extends Fragment implements TypesAdapter.ItemClickListener {
     private void setOnCardClickListeners() {
         recyclerView = view.findViewById(R.id.typesRecyclerView);
         //ToDo Tomorrow. When you click save pass the ID of the current item to the next page and hide particular layouts when done.
-        typesItems = new ArrayList<>();
-        typesItems.add(new TypesItem("Wim Hof", "Desc"));
-        typesItems.add(new TypesItem("Shamanic Breathing", "Desc"));
-        typesItems.add(new TypesItem("Carbon Dioxide Training", "Desc"));
-        typesItems.add(new TypesItem("Conscious Breathing Anchor", "Desc"));
-        typesItems.add(new TypesItem("4-7-8", "Desc"));
-        typesItems.add(new TypesItem("4-4-4-4", "Desc"));
+        recyclerItems = new ArrayList<>();
+        recyclerItems.add(new RecyclerItem("Wim Hof", "Desc"));
+        recyclerItems.add(new RecyclerItem("Shamanic Breathing", "Desc"));
+        recyclerItems.add(new RecyclerItem("Carbon Dioxide Training", "Desc"));
+        recyclerItems.add(new RecyclerItem("Conscious Breathing Anchor", "Desc"));
+        recyclerItems.add(new RecyclerItem("4-7-8", "Desc"));
+        recyclerItems.add(new RecyclerItem("4-4-4-4", "Desc"));
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        typesAdapter = new TypesAdapter(typesItems, this, getContext());
-        recyclerView.setAdapter(typesAdapter);
+        recyclerAdapter = new RecyclerAdapter(recyclerItems, this, getContext());
+        recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setHasFixedSize(true);
 
 
@@ -130,8 +129,10 @@ public class Types extends Fragment implements TypesAdapter.ItemClickListener {
 
     @Override
     public void onItemClick(int position) {
-
-        typesAdapter.rowPosition = position;
+       //This selects the row
+        rowPosition = position;
+        //this highlights it in the adapter
+        recyclerAdapter.rowPosition = position;
 
     }
 }

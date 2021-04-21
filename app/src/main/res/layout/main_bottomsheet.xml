@@ -214,6 +214,7 @@
                     android:layout_gravity="center"
                     android:paddingVertical="10dp"
                     android:text="Binaural Beats"
+                    android:id="@+id/binaural_card_TV"
                     android:textSize="20sp" />
             </androidx.cardview.widget.CardView>
 
@@ -232,6 +233,7 @@
                     android:layout_gravity="center"
                     android:paddingVertical="10dp"
                     android:text="Ambient Sounds"
+                    android:id="@+id/ambient_card_TV"
                     android:textSize="20sp" />
 
             </androidx.cardview.widget.CardView>

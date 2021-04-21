@@ -1,6 +1,5 @@
 package com.example.breathforme.Fragments;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,14 +7,12 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,10 +28,12 @@ public class Home extends Fragment {
     private final String SETS = "SETS";
     private final String BREATHS = "BREATHS";
     private final String BINAURAL = "BINAURAL";
+    private final String AMBIENT = "AMBIENT";
     private final int LAUNCH_SECOND_ACTIVITY = 1;
     private final int LAUNCH_SETS = 2;
     private final int LAUNCH_BREATH = 3;
     private final int LAUNCH_BINAURAL = 4;
+    private final int LAUNCH_AMBIENT = 5;
 
 
     private View view;
@@ -42,11 +41,13 @@ public class Home extends Fragment {
     private RelativeLayout mainFragmentBottomSheet;
     private CardView selectTypeCard, totalBreathsCard, totalSetsCard, startBellCard, endBellCard, totalBreathingMinutesCard,
             meditationCard, binauralBeatsCard, soundscapeCard, instructionCard, delaySetCard, holdBellCard;
-    private TextView typesTV, setsTV;
+    private TextView typesTV, setsTV, binauralTV, ambientTV;
     private Button startButton;
-    int CHeight;
+
     String resultType;
     String resultSets;
+    String resultBinaurals;
+    String resultAmbient;
 
 
     public Home() {
@@ -88,7 +89,6 @@ public class Home extends Fragment {
 //            startBellCard.setVisibility(View.VISIBLE);
 //            endBellCard.setVisibility(View.VISIBLE);
 //            holdBellCard.setVisibility(View.VISIBLE);
-
         } else {
             if (resultType.equals("SHAMANIC")) {
                 typesTV.setText("Shamanic");
@@ -130,10 +130,13 @@ public class Home extends Fragment {
         soundscapeCard = view.findViewById(R.id.ambient_sounds_card);
         instructionCard = view.findViewById(R.id.instruction_card);
         delaySetCard = view.findViewById(R.id.delay_timer);
-        setsTV = view.findViewById(R.id.sets_TV);
-        typesTV = view.findViewById(R.id.types_TV);
         holdBellCard = view.findViewById(R.id.breath_hold_bell);
         startButton = view.findViewById(R.id.start_button);
+
+        setsTV = view.findViewById(R.id.sets_TV);
+        typesTV = view.findViewById(R.id.types_TV);
+        binauralTV = view.findViewById(R.id.binaural_card_TV);
+        ambientTV = view.findViewById(R.id.ambient_card_TV);
 
         mainFragmentBottomSheet = view.findViewById(R.id.main_bottomsheet);
         mainFragmentBottomSheetBehavior = BottomSheetBehavior.from(mainFragmentBottomSheet);
@@ -173,6 +176,14 @@ public class Home extends Fragment {
                 startActivityForResult(intent, LAUNCH_BINAURAL);
             }
         });
+        soundscapeCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    intent.putExtra("key", AMBIENT);
+                    startActivityForResult(intent, LAUNCH_AMBIENT);
+            }
+        });
+
     }
 
     private BottomSheetBehavior.BottomSheetCallback getBottomSheetCallback() {
@@ -214,9 +225,22 @@ public class Home extends Fragment {
         }
         if (requestCode == LAUNCH_SETS){
             if (resultCode == Activity.RESULT_OK) {
-
                 resultSets = data.getStringExtra("sets");
                 setsTV.setText(resultSets);
+
+            }
+        }
+        if (requestCode == LAUNCH_BINAURAL){
+            if (resultCode == Activity.RESULT_OK){
+                resultBinaurals = data.getStringExtra("binaural");
+                binauralTV.setText("" + resultBinaurals);
+
+            }
+        }
+        if (requestCode == LAUNCH_AMBIENT){
+            if (resultCode == Activity.RESULT_OK){
+                resultAmbient = data.getStringExtra("ambient");
+                ambientTV.setText("" + resultAmbient);
             }
         }
 

@@ -21,31 +21,33 @@ import com.example.breathforme.adapters.RecyclerItem;
 
 import java.util.ArrayList;
 
+public class AmbientSoundsFragment extends Fragment implements RecyclerAdapter.ItemClickListener {
 
-public class BinauralBeatsFragment extends Fragment implements RecyclerAdapter.ItemClickListener {
 
     private View view;
-    private RecyclerView recyclerView;
-    private RecyclerAdapter recyclerAdapterr;
+    private RecyclerAdapter recyclerAdapter;
     private ArrayList<RecyclerItem> recyclerItems;
+    private RecyclerView recyclerView;
     private int rowPosition;
     private Button saveButton;
 
-    public BinauralBeatsFragment() {
+    public AmbientSoundsFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_binaural_beats, container, false);
-        saveButton = view.findViewById(R.id.binaural_beats_save);
+        view = inflater.inflate(R.layout.fragment_ambient_sounds, container, false);
+        saveButton = view.findViewById(R.id.ambient_sounds_save_button);
 
         return view;
     }
@@ -54,51 +56,52 @@ public class BinauralBeatsFragment extends Fragment implements RecyclerAdapter.I
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setUpRectclerView();
-        saveBinauralType();
+        saveAmbientSounds();
+
     }
 
     private void setUpRectclerView(){
-        recyclerView = view.findViewById(R.id.binaural_recycler_view);
+        recyclerView = view.findViewById(R.id.ambient_sounds_recyclerview);
         //ToDo Tomorrow. When you click save pass the ID of the current item to the next page and hide particular layouts when done.
         recyclerItems = new ArrayList<>();
-        recyclerItems.add(new RecyclerItem("Focus", "Desc"));
-        recyclerItems.add(new RecyclerItem("Relaxation", "Desc"));
-        recyclerItems.add(new RecyclerItem("Third Eye", "Desc"));
-        recyclerItems.add(new RecyclerItem("Some other shit", "Desc"));
-        recyclerItems.add(new RecyclerItem("Lime disease", "Desc"));
-        recyclerItems.add(new RecyclerItem("Anorexia", "Desc"));
+        recyclerItems.add(new RecyclerItem("Ambient Item 1", "Desc"));
+        recyclerItems.add(new RecyclerItem("Ambient Item 2", "Desc"));
+        recyclerItems.add(new RecyclerItem("Ambient Item 3", "Desc"));
+        recyclerItems.add(new RecyclerItem("Ambient Item 4", "Desc"));
+        recyclerItems.add(new RecyclerItem("Ambient Item 5", "Desc"));
+        recyclerItems.add(new RecyclerItem("Ambient Item 6", "Desc"));
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerAdapterr = new RecyclerAdapter(recyclerItems, this, getContext());
-        recyclerView.setAdapter(recyclerAdapterr);
+        recyclerAdapter = new RecyclerAdapter(recyclerItems, this, getContext());
+        recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setHasFixedSize(true);
 
     }
 
-    private void saveBinauralType() {
+    private void saveAmbientSounds() {
         //ToDo Re-create all of the values for binaural beats
         Intent intent = new Intent();
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (rowPosition == 0) {
-                    intent.putExtra("binaural", "Focus");
+                    intent.putExtra("ambient", "1");
                     getActivity().setResult(Activity.RESULT_OK, intent);
                 } else if (rowPosition == 1) {
-                    intent.putExtra("binaural", "2");
+                    intent.putExtra("ambient", "2");
                     getActivity().setResult(Activity.RESULT_OK, intent);
                 } else if (rowPosition == 2) {
-                    intent.putExtra("binaural", "3");
+                    intent.putExtra("ambient", "3");
                     getActivity().setResult(Activity.RESULT_OK, intent);
                 } else if (rowPosition == 3) {
-                    intent.putExtra("binaural", "4");
+                    intent.putExtra("ambient", "4");
                     getActivity().setResult(Activity.RESULT_OK, intent);
                 } else if (rowPosition == 4) {
-                    intent.putExtra("binaural", "5");
+                    intent.putExtra("ambient", "5");
                     getActivity().setResult(Activity.RESULT_OK, intent);
                 } else if (rowPosition == 5) {
-                    intent.putExtra("binaural", "6");
+                    intent.putExtra("ambient", "6");
                     getActivity().setResult(Activity.RESULT_OK, intent);
                 }
                 getActivity().finish();
@@ -111,6 +114,6 @@ public class BinauralBeatsFragment extends Fragment implements RecyclerAdapter.I
     public void onItemClick(int position) {
         rowPosition = position;
         //this highlights it in the adapter
-        recyclerAdapterr.rowPosition = position;
+        recyclerAdapter.rowPosition = position;
     }
 }

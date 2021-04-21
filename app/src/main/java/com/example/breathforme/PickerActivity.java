@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.breathforme.Fragments.Home;
+import com.example.breathforme.cardFragments.AmbientSoundsFragment;
 import com.example.breathforme.cardFragments.BinauralBeatsFragment;
 import com.example.breathforme.cardFragments.Sets;
 import com.example.breathforme.cardFragments.TotalBreaths;
@@ -20,6 +21,7 @@ public class PickerActivity extends AppCompatActivity {
     private final String BREATHS = "BREATHS";
     private final String SETS = "SETS";
     private final String BINAURAL = "BINAURAL";
+    private final String AMBIENT = "AMBIENT";
 
 
     @Override
@@ -41,6 +43,8 @@ public class PickerActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_picker, new TotalBreaths()).commit();
         } else if (getFragmentIntent.equals(BINAURAL)){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_picker, new BinauralBeatsFragment()).commit();
+        } else if (getFragmentIntent.equals(AMBIENT)){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_picker, new AmbientSoundsFragment()).commit();
         }
 
 

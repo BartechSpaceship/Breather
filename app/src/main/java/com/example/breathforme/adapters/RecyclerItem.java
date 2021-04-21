@@ -2,12 +2,12 @@ package com.example.breathforme.adapters;
 
 import androidx.cardview.widget.CardView;
 
-public class TypesItem {
+public class RecyclerItem {
     private String title;
     private String description;
 
 
-    public TypesItem(String title, String description){
+    public RecyclerItem(String title, String description){
         this.title = title;
         this.description = description;
     }
