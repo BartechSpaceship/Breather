@@ -1,11 +1,13 @@
 package com.example.breathforme.Fragments;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -13,6 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +48,8 @@ public class Home extends Fragment {
             meditationCard, binauralBeatsCard, soundscapeCard, instructionCard, delaySetCard, holdBellCard;
     private TextView typesTV, setsTV, binauralTV, ambientTV;
     private Button startButton;
+    private ImageView likeThisSessionButton, volumeOptions;
+
 
     String resultType;
     String resultSets;
@@ -58,8 +65,8 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
-        setUpMainBottomSheet();
-
+        likeThisSessionButton = view.findViewById(R.id.like_this_session);
+        volumeOptions = view.findViewById(R.id.volumeOptions);
 
         return view;
     }
@@ -67,7 +74,11 @@ public class Home extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        onClickCardListeners();
+        setUpMainBottomSheet();//Views
+        onClickCardListeners();//ClickViews
+        setUpHomePageButtons();
+
+
         getActivity().findViewById(R.id.bottom_navigation);
 
 
@@ -89,10 +100,17 @@ public class Home extends Fragment {
 //            startBellCard.setVisibility(View.VISIBLE);
 //            endBellCard.setVisibility(View.VISIBLE);
 //            holdBellCard.setVisibility(View.VISIBLE);
-        } else {
-            if (resultType.equals("SHAMANIC")) {
-                typesTV.setText("Shamanic");
-            } else if (resultType.equals("CONSCIOUSANCHOR")) {
+        } else if (resultType.equals("SHAMANIC")){
+            typesTV.setText("Shamanic");
+            totalBreathsCard.setVisibility(View.GONE);
+            totalSetsCard.setVisibility(View.GONE);
+            holdBellCard.setVisibility(View.GONE);
+            delaySetCard.setVisibility(View.GONE);
+            meditationCard.setVisibility(View.VISIBLE);
+            binauralBeatsCard.setVisibility(View.VISIBLE);
+            instructionCard.setVisibility(View.VISIBLE);
+            } else {
+            if (resultType.equals("CONSCIOUSANCHOR")) {
                 typesTV.setText("Conscious Breathing Anchor");
             } else if (resultType.equals("CO2")){
                 typesTV.setText("Carbon Dioxide Training");
@@ -115,6 +133,39 @@ public class Home extends Fragment {
 //            holdBellCard.setVisibility(View.VISIBLE);
             //ToDo, get rid of total breaths. Instead count it in minutes. Howmany mintues do you want to do box breathing for ?
         }
+
+
+    }
+    private void setUpHomePageButtons(){
+        //TODo pass all the values to the "Liked" fragment
+        final EditText input = new EditText(getActivity());
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        likeThisSessionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Save session")
+                        .setMessage("Please give  this session a name ya dwib")
+                        .setView(input)
+
+                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Continue with delete operation
+                                Toast.makeText(getContext(), "Create liked card", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_menu_save)
+                        .show();
+
+            }
+        });
 
 
     }

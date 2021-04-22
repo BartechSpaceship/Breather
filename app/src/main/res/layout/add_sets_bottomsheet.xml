@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bottomsheet_background"
-    android:visibility="gone"
+    android:visibility="visible"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:orientation="vertical">
 
         <TextView
@@ -23,6 +24,7 @@
 
 
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:id="@+id/ll_num_pickers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,7 +53,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Min" />
+                android:textColor="@color/black"
+                android:text="M" />
 
             <com.shawnlin.numberpicker.NumberPicker
                 android:id="@+id/number_picker_seconds"
@@ -74,16 +77,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Sec" />
+                android:textColor="@color/black"
+                android:text="S" />
 
 
         </LinearLayout>
 
         <Button
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ll_num_pickers"
-            android:text="Save" />
+            android:id="@+id/add_set_button"
+            android:text="Add set" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancel_set"
+            android:text="Cancel" />
 
 
     </LinearLayout>
