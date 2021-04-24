@@ -1,0 +1,116 @@
+package com.example.breathforme.cardFragments;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.example.breathforme.R;
+import com.example.breathforme.adapters.RecyclerAdapter;
+import com.example.breathforme.adapters.RecyclerItem;
+
+import java.util.ArrayList;
+
+
+public class BinauralBeatsFragment extends Fragment implements RecyclerAdapter.ItemClickListener {
+
+    private View view;
+    private RecyclerView recyclerView;
+    private RecyclerAdapter recyclerAdapterr;
+    private ArrayList<RecyclerItem> recyclerItems;
+    private int rowPosition;
+    private Button saveButton;
+
+    public BinauralBeatsFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        view = inflater.inflate(R.layout.fragment_binaural_beats, container, false);
+        saveButton = view.findViewById(R.id.binaural_beats_save);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setUpRectclerView();
+        saveBinauralType();
+    }
+
+    private void setUpRectclerView(){
+        recyclerView = view.findViewById(R.id.binaural_recycler_view);
+        //ToDo Tomorrow. When you click save pass the ID of the current item to the next page and hide particular layouts when done.
+        recyclerItems = new ArrayList<>();
+        recyclerItems.add(new RecyclerItem("Focus", "Desc"));
+        recyclerItems.add(new RecyclerItem("Relaxation", "Desc"));
+        recyclerItems.add(new RecyclerItem("Third Eye", "Desc"));
+        recyclerItems.add(new RecyclerItem("Some other shit", "Desc"));
+        recyclerItems.add(new RecyclerItem("Lime disease", "Desc"));
+        recyclerItems.add(new RecyclerItem("Anorexia", "Desc"));
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerAdapterr = new RecyclerAdapter(recyclerItems, this, getContext());
+        recyclerView.setAdapter(recyclerAdapterr);
+        recyclerView.setHasFixedSize(true);
+
+    }
+
+    private void saveBinauralType() {
+        //ToDo Re-create all of the values for binaural beats
+        Intent intent = new Intent();
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rowPosition == 0) {
+                    intent.putExtra("binaural", "Focus");
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                } else if (rowPosition == 1) {
+                    intent.putExtra("binaural", "2");
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                } else if (rowPosition == 2) {
+                    intent.putExtra("binaural", "3");
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                } else if (rowPosition == 3) {
+                    intent.putExtra("binaural", "4");
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                } else if (rowPosition == 4) {
+                    intent.putExtra("binaural", "5");
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                } else if (rowPosition == 5) {
+                    intent.putExtra("binaural", "6");
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                }
+                getActivity().finish();
+            }
+
+        });
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        rowPosition = position;
+        //this highlights it in the adapter
+        recyclerAdapterr.rowPosition = position;
+    }
+}
