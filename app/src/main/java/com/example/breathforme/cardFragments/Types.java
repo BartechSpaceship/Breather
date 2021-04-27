@@ -35,6 +35,7 @@ public class Types extends Fragment implements RecyclerAdapter.ItemClickListener
     private final String CONSCIOUSANCHOR = "CONSCIOUSANCHOR";
     private final String FOURSEVENEIGHT = "FOURSEVENEIGHT";
     private final String FOURBOX = "FOURBOX";
+    private final String MEDITATION = "MEDITATION";
 
 
     private Button saveButton;
@@ -84,7 +85,8 @@ public class Types extends Fragment implements RecyclerAdapter.ItemClickListener
         recyclerItems.add(new RecyclerItem("Carbon Dioxide Training", "Desc"));
         recyclerItems.add(new RecyclerItem("Conscious Breathing Anchor", "Desc"));
         recyclerItems.add(new RecyclerItem("4-7-8", "Desc"));
-        recyclerItems.add(new RecyclerItem("4-4-4-4", "Desc"));
+        recyclerItems.add(new RecyclerItem("Box breathing", "4-4-4-4"));
+        recyclerItems.add(new RecyclerItem("Meditation", "Desc"));
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -118,6 +120,9 @@ public class Types extends Fragment implements RecyclerAdapter.ItemClickListener
                     getActivity().setResult(Activity.RESULT_OK, intent);
                 } else if (rowPosition == 5) {
                     intent.putExtra("types", FOURBOX);
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                } else if (rowPosition == 6){
+                    intent.putExtra("types", MEDITATION);
                     getActivity().setResult(Activity.RESULT_OK, intent);
                 }
                 getActivity().finish();

@@ -64,12 +64,13 @@ public class AmbientSoundsFragment extends Fragment implements RecyclerAdapter.I
         recyclerView = view.findViewById(R.id.ambient_sounds_recyclerview);
         //ToDo Tomorrow. When you click save pass the ID of the current item to the next page and hide particular layouts when done.
         recyclerItems = new ArrayList<>();
-        recyclerItems.add(new RecyclerItem("Ambient Item 1", "Desc"));
-        recyclerItems.add(new RecyclerItem("Ambient Item 2", "Desc"));
-        recyclerItems.add(new RecyclerItem("Ambient Item 3", "Desc"));
-        recyclerItems.add(new RecyclerItem("Ambient Item 4", "Desc"));
-        recyclerItems.add(new RecyclerItem("Ambient Item 5", "Desc"));
-        recyclerItems.add(new RecyclerItem("Ambient Item 6", "Desc"));
+        recyclerItems.add(new RecyclerItem("Drums", "Desc"));
+        recyclerItems.add(new RecyclerItem("Cave", "Desc"));
+        recyclerItems.add(new RecyclerItem("Ocean", "Desc"));
+        recyclerItems.add(new RecyclerItem("Fire", "Desc"));
+        recyclerItems.add(new RecyclerItem("Birds", "Desc"));
+        recyclerItems.add(new RecyclerItem("Night time", "Desc"));
+        recyclerItems.add(new RecyclerItem("Guitar", "Desc"));
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);

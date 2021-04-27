@@ -2,4 +2,16 @@
     <string name="app_name">Breathforme</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="focus">Binaural beats have an impact on the efficiency of allocating attention over time which allow for enhanced focus and active thought processing</string>
+    <string name="body_relaxation">Relaxation reduces stress and the symptoms of mental health conditions like depression, anxiety and schizophrenia</string>
+    <string name="third_eye">The third eye, or \'seat of the soul\' is interconnected with the pineal gland which can be activated at certain frequencies such as this. Listening can grant you access to higher consciousness and an enlightened state</string>
+    <string name="inner_awareness">Facilitates easy access to inner resources and creates space for inner peace</string>
+    <string name="intuition">Binaural beats enhance the abilities of the brain to process information, connecting you to your subconscious mind or intuition</string>
+    <string name="solfeggio">Solfeggio frequencies make up the ancient 6-tone scale thought to have been used in sacred music such as Gregorian Chants. Each Solfeggio tone is comprised of a frequency required to balance your energy and keep your body, mind and spirit in perfect harmony</string>
+    <string name="universal_healing">Also known as Abrahams Universal Healing Rate and it is experienced as a release from the negative sensations</string>
+    <string name="emotional_acceptance">This frequency can guide us to acknowledge seeded emotions and open up for a deeper connection with oneself, others, and the universe by clearing dissatisfaction from the mind</string>
+    <string name="creativity">Theta frequencies are known to greatly assist in amplifying ones creativity, imagination, and ingenuity</string>
+    <string name="visualization">Visualization is powerful because its a high-leverage practice. In only 5 to 10 minutes per day it can radically improve your life</string>
+    <string name="introspection">Auditory stimulation at the 4-7Hz frequency range are connected with deep thinking and contemplation rather than observing external stimuli</string>
+    <string name="bliss">Linked to the discovery of transcendence, completeness, wholeness, and an uplifted consciousness.</string>
 </resources>

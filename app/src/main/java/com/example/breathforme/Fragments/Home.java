@@ -34,11 +34,20 @@ public class Home extends Fragment {
     private final String BREATHS = "BREATHS";
     private final String BINAURAL = "BINAURAL";
     private final String AMBIENT = "AMBIENT";
+    private final String MEDITATION = "MEDITATION";
+
     private final int LAUNCH_SECOND_ACTIVITY = 1;
     private final int LAUNCH_SETS = 2;
     private final int LAUNCH_BREATH = 3;
     private final int LAUNCH_BINAURAL = 4;
     private final int LAUNCH_AMBIENT = 5;
+    private final int LAUNCH_MEDITATION = 6;
+
+    String resultType;
+    String resultSets;
+    String resultBinaurals;
+    String resultAmbient;
+    String resultMeditation;
 
 
     private View view;
@@ -49,12 +58,6 @@ public class Home extends Fragment {
     private TextView typesTV, setsTV, binauralTV, ambientTV;
     private Button startButton;
     private ImageView likeThisSessionButton, volumeOptions;
-
-
-    String resultType;
-    String resultSets;
-    String resultBinaurals;
-    String resultAmbient;
 
 
     public Home() {
@@ -82,7 +85,6 @@ public class Home extends Fragment {
         getActivity().findViewById(R.id.bottom_navigation);
 
 
-
     }
 
     private void setUpBottomsheetLayouts() {
@@ -91,52 +93,48 @@ public class Home extends Fragment {
             typesTV.setText("Wim Hof");
             totalBreathsCard.setVisibility(View.VISIBLE);
             totalSetsCard.setVisibility(View.VISIBLE);
-            delaySetCard.setVisibility(View.VISIBLE);
             meditationCard.setVisibility(View.VISIBLE);
             binauralBeatsCard.setVisibility(View.VISIBLE);
             instructionCard.setVisibility(View.VISIBLE);
-          //  totalBreathingMinutesCard.setVisibility(View.GONE);
 
-//            startBellCard.setVisibility(View.VISIBLE);
-//            endBellCard.setVisibility(View.VISIBLE);
-//            holdBellCard.setVisibility(View.VISIBLE);
-        } else if (resultType.equals("SHAMANIC")){
+        } else if (resultType.equals("SHAMANIC")) {
             typesTV.setText("Shamanic");
             totalBreathsCard.setVisibility(View.GONE);
             totalSetsCard.setVisibility(View.GONE);
-            holdBellCard.setVisibility(View.GONE);
-            delaySetCard.setVisibility(View.GONE);
             meditationCard.setVisibility(View.VISIBLE);
             binauralBeatsCard.setVisibility(View.VISIBLE);
             instructionCard.setVisibility(View.VISIBLE);
-            } else {
+        } else if (resultType.equals("MEDITATION")) {
+            typesTV.setText("Meditation");
+            totalSetsCard.setVisibility(View.GONE);
+            totalBreathsCard.setVisibility(View.GONE);
+            soundscapeCard.setVisibility(View.VISIBLE);
+            meditationCard.setVisibility(View.VISIBLE);
+            binauralBeatsCard.setVisibility(View.VISIBLE);
+            instructionCard.setVisibility(View.GONE);
+        } else {
             if (resultType.equals("CONSCIOUSANCHOR")) {
                 typesTV.setText("Conscious Breathing Anchor");
-            } else if (resultType.equals("CO2")){
+            } else if (resultType.equals("CO2")) {
                 typesTV.setText("Carbon Dioxide Training");
-            } else if (resultType.equals("FOURSEVENEIGHT")){
+            } else if (resultType.equals("FOURSEVENEIGHT")) {
                 typesTV.setText("Four seven eight");
-            } else if (resultType.equals("FOURBOX")){
+            } else if (resultType.equals("FOURBOX")) {
                 typesTV.setText("Box Breathing ");
             }
-        //    totalBreathingMinutesCard.setVisibility(View.VISIBLE);
+
             totalSetsCard.setVisibility(View.GONE);
             holdBellCard.setVisibility(View.GONE);
-            delaySetCard.setVisibility(View.GONE);
             totalBreathsCard.setVisibility(View.VISIBLE);
             meditationCard.setVisibility(View.VISIBLE);
             binauralBeatsCard.setVisibility(View.VISIBLE);
             instructionCard.setVisibility(View.VISIBLE);
-
-          //  startBellCard.setVisibility(View.VISIBLE);
-//            endBellCard.setVisibility(View.VISIBLE);
-//            holdBellCard.setVisibility(View.VISIBLE);
-            //ToDo, get rid of total breaths. Instead count it in minutes. Howmany mintues do you want to do box breathing for ?
         }
 
 
     }
-    private void setUpHomePageButtons(){
+
+    private void setUpHomePageButtons() {
         //TODo pass all the values to the "Liked" fragment
         final EditText input = new EditText(getActivity());
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
@@ -230,8 +228,15 @@ public class Home extends Fragment {
         soundscapeCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    intent.putExtra("key", AMBIENT);
-                    startActivityForResult(intent, LAUNCH_AMBIENT);
+                intent.putExtra("key", AMBIENT);
+                startActivityForResult(intent, LAUNCH_AMBIENT);
+            }
+        });
+        meditationCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("key", MEDITATION);
+                startActivityForResult(intent, LAUNCH_MEDITATION);
             }
         });
 
@@ -274,24 +279,31 @@ public class Home extends Fragment {
 
             }
         }
-        if (requestCode == LAUNCH_SETS){
+        if (requestCode == LAUNCH_SETS) {
             if (resultCode == Activity.RESULT_OK) {
                 resultSets = data.getStringExtra("sets");
                 setsTV.setText(resultSets);
 
             }
         }
-        if (requestCode == LAUNCH_BINAURAL){
-            if (resultCode == Activity.RESULT_OK){
+        if (requestCode == LAUNCH_BINAURAL) {
+            if (resultCode == Activity.RESULT_OK) {
                 resultBinaurals = data.getStringExtra("binaural");
                 binauralTV.setText("" + resultBinaurals);
 
             }
         }
-        if (requestCode == LAUNCH_AMBIENT){
-            if (resultCode == Activity.RESULT_OK){
+        if (requestCode == LAUNCH_AMBIENT) {
+            if (resultCode == Activity.RESULT_OK) {
                 resultAmbient = data.getStringExtra("ambient");
                 ambientTV.setText("" + resultAmbient);
+            }
+        }
+
+        if (requestCode == LAUNCH_MEDITATION) {
+            if (resultCode == Activity.RESULT_OK) {
+                resultMeditation = data.getStringExtra("meditation");
+
             }
         }
 

@@ -19,6 +19,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@id/ambient_sounds_save_button"
             android:id="@+id/ambient_sounds_recyclerview"
             android:layout_below="@id/ambient_sounds_title"/>
 

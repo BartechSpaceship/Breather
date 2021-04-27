@@ -61,12 +61,18 @@ public class BinauralBeatsFragment extends Fragment implements RecyclerAdapter.I
         recyclerView = view.findViewById(R.id.binaural_recycler_view);
         //ToDo Tomorrow. When you click save pass the ID of the current item to the next page and hide particular layouts when done.
         recyclerItems = new ArrayList<>();
-        recyclerItems.add(new RecyclerItem("Focus", "Desc"));
-        recyclerItems.add(new RecyclerItem("Relaxation", "Desc"));
-        recyclerItems.add(new RecyclerItem("Third Eye", "Desc"));
-        recyclerItems.add(new RecyclerItem("Some other shit", "Desc"));
-        recyclerItems.add(new RecyclerItem("Lime disease", "Desc"));
-        recyclerItems.add(new RecyclerItem("Anorexia", "Desc"));
+        recyclerItems.add(new RecyclerItem("Focus 14Hz Beta", getString(R.string.focus)));
+        recyclerItems.add(new RecyclerItem("Relaxation 0.5Hz Delta", getString(R.string.body_relaxation)));
+        recyclerItems.add(new RecyclerItem("Third Eye 13Hz Beta", getString(R.string.third_eye)));
+        recyclerItems.add(new RecyclerItem("Inner Awareness 3.9Hz Delta", getString(R.string.inner_awareness)));
+        recyclerItems.add(new RecyclerItem("Visualization 12.3Hz Alpha", getString(R.string.visualization)));
+        recyclerItems.add(new RecyclerItem("Emotional Acceptance 7Hz", getString(R.string.emotional_acceptance)));
+        recyclerItems.add(new RecyclerItem("Introspection 4.9Hz", getString(R.string.introspection)));
+        recyclerItems.add(new RecyclerItem("Universal Healing 1.5Hz", getString(R.string.universal_healing)));
+        recyclerItems.add(new RecyclerItem("Creativity 7.5Hz", getString(R.string.creativity)));
+        recyclerItems.add(new RecyclerItem("Intuition 5.5Hz Theta", getString(R.string.intuition)));
+        recyclerItems.add(new RecyclerItem("Solfeggio 7.83Hz Theta", getString(R.string.solfeggio)));
+        recyclerItems.add(new RecyclerItem("Bliss 0.9Hz Delta", getString(R.string.bliss)));
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
